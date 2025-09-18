@@ -2,4 +2,7 @@ env/
 .env
 env-py311/
 .venv/
+backup/
+.claude/
+.streamlit/
 .cache/
