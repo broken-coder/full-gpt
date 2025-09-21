@@ -4,11 +4,20 @@
 import os
 from dotenv import load_dotenv
 
+
+load_dotenv()
+
+
 # ----- 배운 임포트 우선 -----
-from langchain.chat_models import ChatOpenAI
+try:
+    from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+except ImportError:
+    # 구 버전 패키지 호환
+    from langchain.chat_models import ChatOpenAI
+    from langchain.embeddings import OpenAIEmbeddings
 from langchain.document_loaders import UnstructuredFileLoader
 from langchain.text_splitter import CharacterTextSplitter
-from langchain.embeddings import OpenAIEmbeddings, CacheBackedEmbeddings
+from langchain.embeddings import CacheBackedEmbeddings
 from langchain.vectorstores import FAISS
 from langchain.storage import LocalFileStore
 from langchain.prompts import ChatPromptTemplate
@@ -128,6 +137,3 @@ if file:
        
 else:
     st.session_state["messages"] = []
-
-
-
